@@ -1,0 +1,115 @@
+# 枚举与字典 Demo API 测试
+
+### ===== 查询接口 =====
+
+### 1. 获取所有枚举列表
+GET http://localhost:5000/api/enums
+
+### 2. 获取指定枚举（OrderStatus）
+GET http://localhost:5000/api/enums/OrderStatus
+
+### 3. 获取指定枚举（PaymentMethod）
+GET http://localhost:5000/api/enums/PaymentMethod
+
+### 4. 获取单个用户（字典翻译：性别、民族）
+GET http://localhost:5000/api/demo/user
+
+### 5. 获取用户列表（批量字典翻译）
+GET http://localhost:5000/api/demo/users
+
+### 6. 获取单个订单（枚举 + 字典 + 嵌套对象翻译）
+GET http://localhost:5000/api/demo/order
+
+### 7. 获取订单列表（批量嵌套翻译）
+GET http://localhost:5000/api/demo/orders
+
+### ===== 写入接口（含校验）=====
+
+### 8. 创建订单（枚举字符串/数字均可接收）
+POST http://localhost:5000/api/demo/create-order
+Content-Type: application/json
+
+{
+    "orderNo": "ORD-2026-100",
+    "amount": 199.99,
+    "status": "Paid",
+    "paymentMethod": "WeChatPay",
+    "source": "app"
+}
+
+### 9. 创建订单 - 数字枚举值
+POST http://localhost:5000/api/demo/create-order
+Content-Type: application/json
+
+{
+    "orderNo": "ORD-2026-101",
+    "amount": 299.99,
+    "status": 1,
+    "paymentMethod": 2,
+    "source": "pc"
+}
+
+### 10. 创建订单 - 无效来源（应返回400）
+POST http://localhost:5000/api/demo/create-order
+Content-Type: application/json
+
+{
+    "orderNo": "ORD-ERR",
+    "amount": 99,
+    "status": "Pending",
+    "paymentMethod": "Alipay",
+    "source": "invalid_source"
+}
+
+### 11. 创建用户（字典值自动校验）
+POST http://localhost:5000/api/demo/create-user
+Content-Type: application/json
+
+{
+    "name": "赵六",
+    "sex": "1",
+    "nation": "4",
+    "age": 30,
+    "email": "zhaoliu@test.com"
+}
+
+### ===== 校验接口 =====
+
+### 12. 校验字典值是否合法
+POST http://localhost:5000/api/demo/validate-dict-value
+Content-Type: application/json
+
+{
+    "dictCode": "sex",
+    "dictValue": "1"
+}
+
+### 13. 校验枚举值（名称）- 不区分大小写
+POST http://localhost:5000/api/demo/validate-enum
+Content-Type: application/json
+
+{
+    "enumName": "OrderStatus",
+    "enumValue": "Paid"
+}
+
+### 14. 校验枚举值（数字）
+POST http://localhost:5000/api/demo/validate-enum
+Content-Type: application/json
+
+{
+    "enumName": "OrderStatus",
+    "enumValue": "0"
+}
+
+### 15. 校验枚举值（非法值应返回400）
+POST http://localhost:5000/api/demo/validate-enum
+Content-Type: application/json
+
+{
+    "enumName": "OrderStatus",
+    "enumValue": "invalid_status"
+}
+
+### 16. 刷新字典缓存
+POST http://localhost:5000/api/demo/refresh-cache
