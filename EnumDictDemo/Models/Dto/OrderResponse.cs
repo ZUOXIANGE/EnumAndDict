@@ -1,5 +1,6 @@
 using EnumDictDemo.Attributes;
 using EnumDictDemo.Models.Enums;
+using FastEnumUtility;
 
 namespace EnumDictDemo.Models.Dto;
 
@@ -10,10 +11,10 @@ public class OrderResponse
     public decimal Amount { get; set; }
 
     public OrderStatus Status { get; set; }
-    public string StatusLabel { get; set; } = string.Empty;
+    public string StatusLabel => Status.GetLabel() ?? Status.ToString();
 
     public PaymentMethod PaymentMethod { get; set; }
-    public string PaymentMethodLabel { get; set; } = string.Empty;
+    public string PaymentMethodLabel => PaymentMethod.GetLabel() ?? PaymentMethod.ToString();
 
     [DictTranslate("order_source", nameof(SourceDesc))]
     public string Source { get; set; } = string.Empty;
@@ -21,10 +22,4 @@ public class OrderResponse
     public string SourceDesc { get; set; } = string.Empty;
 
     public UserResponse? Buyer { get; set; }
-
-    public void FillEnumLabels()
-    {
-        StatusLabel = Status.GetDisplayName();
-        PaymentMethodLabel = PaymentMethod.GetDisplayName();
-    }
 }

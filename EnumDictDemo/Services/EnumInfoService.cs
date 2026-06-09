@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using EnumDictDemo.Models.Dto;
 using EnumDictDemo.Models.Enums;
 using FastEnumCore = FastEnumUtility.FastEnum;
+using FastEnumUtility;
 
 namespace EnumDictDemo.Services;
 
@@ -11,8 +12,8 @@ public class EnumInfoService : IEnumInfoService
 
     public EnumInfoService()
     {
-        _cache[nameof(OrderStatus)] = BuildOptions<OrderStatus>(e => e.GetDisplayName());
-        _cache[nameof(PaymentMethod)] = BuildOptions<PaymentMethod>(e => e.GetDisplayName());
+        _cache[nameof(OrderStatus)] = BuildOptions<OrderStatus>(e => e.GetLabel() ?? e.ToString());
+        _cache[nameof(PaymentMethod)] = BuildOptions<PaymentMethod>(e => e.GetLabel() ?? e.ToString());
     }
 
     public List<EnumOptionResponse> GetEnumOptions(string enumName)

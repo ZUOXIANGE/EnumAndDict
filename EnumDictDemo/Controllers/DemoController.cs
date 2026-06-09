@@ -66,7 +66,6 @@ public class DemoController : ControllerBase
                 Email = "zhangsan@example.com"
             }
         };
-        order.FillEnumLabels();
 
         return Ok(new { code = 200, data = order });
     }
@@ -98,9 +97,6 @@ public class DemoController : ControllerBase
                 Buyer = null
             }
         };
-
-        foreach (var order in orders)
-            order.FillEnumLabels();
 
         return Ok(new { code = 200, data = orders });
     }
@@ -134,7 +130,6 @@ public class DemoController : ControllerBase
             PaymentMethod = request.PaymentMethod,
             Source = request.Source
         };
-        order.FillEnumLabels();
 
         return Ok(new { code = 201, data = order });
     }
