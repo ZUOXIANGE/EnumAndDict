@@ -26,7 +26,6 @@ EnumDictDemo/
 │   ├── Entities/
 │   │   └── SysDict.cs               # 字典表实体
 │   └── Enums/
-│       ├── EnumExtensions.cs        # 枚举扩展方法（FastEnum + Display）
 │       ├── OrderStatus.cs           # 订单状态枚举
 │       └── PaymentMethod.cs         # 支付方式枚举
 ├── Services/

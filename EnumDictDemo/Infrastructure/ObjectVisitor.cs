@@ -102,7 +102,8 @@ public class ObjectVisitor
                     SourceValue = sourceValue,
                     DictCode = attr.DictCode,
                     TargetPropertyName = attr.TargetProperty,
-                    DefaultValue = attr.DefaultValue
+                    DefaultValue = attr.DefaultValue,
+                    TargetProperty = targetProp
                 });
             }
 

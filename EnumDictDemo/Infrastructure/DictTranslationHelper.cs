@@ -49,8 +49,8 @@ public class DictTranslationHelper
                     ? label
                     : request.DefaultValue ?? request.SourceValue;
 
-                var targetProp = request.TargetObject.GetType()
-                    .GetProperty(request.TargetPropertyName, BindingFlags.Public | BindingFlags.Instance);
+                var targetProp = request.TargetProperty
+                    ?? request.TargetObject.GetType().GetProperty(request.TargetPropertyName, BindingFlags.Public | BindingFlags.Instance);
 
                 if (targetProp != null && targetProp.CanWrite)
                 {

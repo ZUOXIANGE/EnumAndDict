@@ -186,15 +186,3 @@ public class DemoController : ControllerBase
         return Ok(new { code = 200, message = "Cache refreshed" });
     }
 }
-
-public class ValidateDictValueRequest
-{
-    public string DictCode { get; set; } = string.Empty;
-    public string DictValue { get; set; } = string.Empty;
-}
-
-public class ValidateEnumRequest
-{
-    public string EnumName { get; set; } = string.Empty;
-    public string EnumValue { get; set; } = string.Empty;
-}
