@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="EnumDictDemo\EnumDictDemo.csproj" />
+  <Project Path="EnumDictDemo.Tests\EnumDictDemo.Tests.csproj" />
 </Solution>

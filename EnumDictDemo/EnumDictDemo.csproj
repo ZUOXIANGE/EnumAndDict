@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="EnumDictDemo.Tests" />
+  </ItemGroup>
+
 </Project>
